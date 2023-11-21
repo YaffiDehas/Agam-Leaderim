@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import moment from 'moment';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
 import { ContactType } from '../../types';
 import './Contact.css';
 

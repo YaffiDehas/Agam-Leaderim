@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import DataTable from 'react-data-table-component';
-import Select from 'react-select';
 import Contact from '../Contact/Contact';
 import { ContactType } from '../../types';
-import './ContactList.css';
 import Records from '../Table/Records';
 import Pagination from '../Table/Pagination';
+import './ContactList.css';
 
 const NATIONALITY = ['AU', 'BR', 'CA', 'CH', 'DE', 'DK', 'ES', 'FI', 'FR', 'GB', 'IE', 'IN', 'IR', 'MX', 'NL', 'NO', 'NZ', 'RS', 'TR', 'UA', 'US'];
 
 function ContactsList() {
     const [contacts, setContacts] = useState<ContactType[]>([]);
     const [selectedContact, setSelectedContact] = useState<ContactType>();
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState<boolean>(false);
     const [seed, setSeed] = useState<string>('');
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recordsPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [recordsPerPage] = useState<number>(10);
+    
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentRecords = contacts.slice(indexOfFirstRecord, indexOfLastRecord);
@@ -70,18 +68,7 @@ function ContactsList() {
                             return <option key={index}>{nat}</option>
                         })}
                     </select>
-                    {/* <Select
-                        className="basic-single"
-                        classNamePrefix="select"
-                        defaultValue={NATIONALITY[0]}
-                        isRtl={true}
-                        isSearchable={true}
-                        name="color"
-                        options={NATIONALITY}
-                        onChange={(e) => handleNatSelect(e)}
-                    /> */}
                 </div>
-                {/* <Table data={contacts}/> */}
                 <Records data={currentRecords} handleRowClicked={(e) => handleRowSelect(e)} />
                 <Pagination
                     nPages={nPages}
@@ -89,8 +76,6 @@ function ContactsList() {
                     setCurrentPage={setCurrentPage}
                 />
             </div>
-
-            {/* <DataTable columns={columns} data={contacts} selectableRows onSelectedRowsChange={(e)=> handleRowSelect(e)} pagination /> */}
             {modalShow && <Contact show={modalShow} contact={selectedContact} onHide={() => setModalShow(false)} handleClearSelect={handleClearSelect} />}
         </>
     );

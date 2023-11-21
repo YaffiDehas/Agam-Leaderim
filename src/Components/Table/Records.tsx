@@ -1,36 +1,8 @@
 import React from 'react'
+import moment from 'moment';
 import { ContactType } from '../../types';
 
-const COLUMNS = [
-    {
-        name: 'Full Name',
-        selector: (row: { firstName: any, lastName: any }) => `${row.firstName} ${row.lastName}`,
-    },
-    {
-        name: 'Email Adress',
-        selector: (row: { email: any; }) => row.email,
-    },
-    {
-        name: 'Phone',
-        selector: (row: { phone: any; }) => row.phone,
-    },
-    {
-        name: 'Gender',
-        selector: (row: { gender: any; }) => row.gender,
-    },
-    {
-        name: 'City',
-        selector: (row: { city: any; }) => row.city,
-    },
-    {
-        name: 'Date Of Birth',
-        selector: (row: { dateOfBirth: any; }) => row.dateOfBirth,
-    },
-    {
-        name: 'Nationality',
-        selector: (row: { nationality: any; }) => row.nationality,
-    }
-];
+const COLUMNS = ['Full Name','Email Adress','Phone', 'Gender','City','Date Of Birth','Nationality'];
 
 interface RecordsProps {
     data: ContactType[];
@@ -45,7 +17,7 @@ const Records = (props: RecordsProps) => {
         <table className="table">
             <thead>
                 <tr>
-                    {COLUMNS.map((col, index) => <th key={index}>{col.name}</th>)}
+                    {COLUMNS.map((col, index) => <th key={index}>{col}</th>)}
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +28,7 @@ const Records = (props: RecordsProps) => {
                         <td>{item.phone}</td>
                         <td>{item.gender}</td>
                         <td>{item.city}</td>
-                        <td>{item.dateOfBirth}</td>
+                        <td>{moment(item && item.dateOfBirth).format('DD MMM, YYYY')}</td>
                         <td>{item.nationality}</td>
                     </tr>
                 ))}
