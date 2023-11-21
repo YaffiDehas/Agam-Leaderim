@@ -1,0 +1,15 @@
+.details {
+    font-size: medium;
+    margin: 2%;
+}
+
+.contact {
+    position: absolute;
+    bottom: 33%;
+    right: 33%;
+    background-color: #e8e8e8;
+    box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.7);
+    overflow: visible;
+    z-index: 999999;
+    padding: 3%;
+}
